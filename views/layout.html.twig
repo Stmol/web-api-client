@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title|default('Web API Client') }}</title>
+  <meta name="description" content="Web Api Client tool">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% block stylesheets %}
+    <link rel="stylesheet" href="assets/css/vendor.css">
+  {% endblock stylesheets %}
+</head>
+<body>
+
+<div class="container">
+  <div class="page-header col-md-8 col-md-offset-2">
+    <h1>Web Api Client</h1>
+  </div>
+
+  {% block body '' %}
+</div>
+
+{% block javascripts %}
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="assets/js/libs/jquery/jquery.min.js"><\/script>')</script>
+  <script src="assets/js/vendor.js"></script>
+{% endblock javascripts %}
+</body>
+</html>

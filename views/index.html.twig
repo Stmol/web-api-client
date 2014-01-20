@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-12">
+      {% include 'form.html.twig' %}
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+      {% if response is defined %}
+        <div class="alert alert-info"><strong>{{ response.code }}</strong></div>
+        <pre id="result">{{ response.body }}</pre>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+
+  <script type="text/javascript">
+
+    (function(global, $) {
+
+      /**
+       * Add query param form
+       * @param $collectionHolder
+       * @param $newLink
+       */
+      global.addParamForm = function ($collectionHolder, $newLink) {
+        var prototype = $collectionHolder.data('prototype'),
+            index = $collectionHolder.data('index'),
+            newForm = prototype.replace(/__name__/g, index);
+
+        $collectionHolder.data('index', index + 1);
+
+        var $newForm = $(newForm);
+
+        $newLink.before($newForm);
+        global.addParamRemoveLink($newForm);
+      }
+
+      /**
+       * Add remove link for new param form
+       * @param $paramForm
+       */
+      global.addParamRemoveLink = function ($paramForm) {
+        var $removeLink = $paramForm
+            .children('div')
+            .children('.remove-link');
+
+        $removeLink.on('click', function (e) {
+          e.preventDefault();
+          $paramForm.remove();
+        });
+      }
+
+    })(window, jQuery);
+
+    $(function() {
+      var $collectionHolder = $('#web_api_form_params'),
+          $addParamLink = $('<a href="#">Add parameter</a>');
+
+      $collectionHolder.find('.form-group').each(function() {
+        window.addParamRemoveLink($(this));
+      });
+
+      $collectionHolder
+        .append($addParamLink)
+        .data('index', $collectionHolder.find(':input').length);
+
+      $addParamLink.on('click', function(e) {
+        e.preventDefault();
+        window.addParamForm($collectionHolder, $addParamLink);
+      });
+
+      var result = JSON.parse($('#result').text());
+      $('#result').text(JSON.stringify(result, null, 4));
+    });
+
+  </script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+  "name": "WebAPIClient",
+  "version": "0.1.0",
+  "authors": [
+    "Yury Smidovich <dev@stmol.me>"
+  ],
+  "license": "MIT",
+  "homepage": "stmol.me",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "html5-boilerplate": "~4.3.0",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.3"
+  }
+}

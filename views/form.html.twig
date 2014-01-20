@@ -1,0 +1,52 @@
+<div class="col-md-8 col-md-offset-2">
+  {{ form_start(form, { 'attr': { 'class': 'form-horizontal', 'novalidate': 'novalidate' } }) }}
+
+  <div class="form-group">
+    {# Url #}
+    <div class="col-md-8">
+      {{ form_widget(form.url, { 'attr': { 'class': 'form-control', 'placeholder': 'URL' } }) }}
+    </div>
+    {# Methods #}
+    <div class="col-md-4">
+      {{ form_widget(form.method, { 'attr': { 'class': 'form-control' } }) }}
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-12">
+      <div id="web_api_form_params" data-prototype="{{ _self.params_prototype(form.params.vars.prototype)|e }}">
+        {% for paramField in form.params %}
+          {{ _self.params_prototype(paramField) }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {# Submit #}
+  <div class="form-group">
+    <div class="col-md-12">
+      {{ form_widget(form.submit, { 'attr': { 'class': 'btn btn-default' } }) }}
+    </div>
+  </div>
+
+  {# Say that the field with the parameters we have already rendered #}
+  {% do form.params.setRendered %}
+
+  {{ form_end(form) }}
+</div>
+
+{% macro params_prototype(param) %}
+  <div class="form-group">
+    <div class="col-md-4">
+      <div>{{ form_widget(param.name, { 'attr': { 'class': 'form-control', 'placeholder': param.name.vars.label } }) }}</div>
+      <div>{{ form_errors(param.name) }}</div>
+    </div>
+    <div class="col-md-4">
+      <div>{{ form_widget(param.value, { 'attr': { 'class': 'form-control', 'placeholder': param.value.vars.label } }) }}</div>
+      <div>{{ form_errors(param.value) }}</div>
+    </div>
+    <div class="col-md-4">
+      <a class="remove-link" href="#">Remove</a>
+    </div>
+  </div>
+{% endmacro %}
