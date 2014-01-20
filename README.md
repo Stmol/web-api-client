@@ -1,6 +1,6 @@
-Web Api Test Tool
-=================
-Tiny web interface for testing API through HTTP requests
+Web Api Testing Tool
+====================
+Tiny web tool for testing API through HTTP requests
 
 ### Installation
 
