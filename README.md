@@ -13,13 +13,13 @@ $ composer install
 **Step 2:** Install Node packages
 
 ``` bash
-$ npm i
+$ npm update
 ```
 
 **Step 3:** Install Bower components
 
 ``` bash
-$ bower i
+$ bower update
 ```
 
 **Step 4:** Run grunt default task
