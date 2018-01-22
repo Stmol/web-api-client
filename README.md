@@ -1,3 +1,5 @@
+# OUTDATED
+
 Web Api Testing Tool
 ====================
 Tiny web tool for testing API through HTTP requests
